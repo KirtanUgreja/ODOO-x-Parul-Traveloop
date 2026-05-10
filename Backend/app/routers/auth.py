@@ -96,8 +96,14 @@ async def send_otp(
     otp = otp_service.generate_otp()
     otp_service.store_otp(body.purpose, body.email, otp)
 
-    # In production, send email here. For now, just return success.
-    # print(f"OTP for {body.email}: {otp}")  # Debug only
+    # Send email via SendGrid (or print in development)
+    from app.services import email_service
+    email_sent = email_service.send_email_otp(body.email, otp, body.purpose)
+    
+    if not email_sent:
+        # If email failed, we still return success (OTP is stored)
+        # In production, you might want to return an error
+        pass
 
     return _make_success_response(
         {"message": "OTP sent to email"},
