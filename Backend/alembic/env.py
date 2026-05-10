@@ -8,6 +8,16 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 from app.config import settings
 from app.models.base import Base
 
+# Import all models to ensure they are registered in metadata
+from app.models.user import User
+from app.models.city import City
+from app.models.trip import Trip
+from app.models.section import Section
+from app.models.section_activity import SectionActivity
+from app.models.activity_catalog import ActivityCatalog
+from app.models.budget_item import BudgetItem
+from app.models.invoice import Invoice
+
 
 config = context.config
 
