@@ -1,6 +1,12 @@
 .DS_Store
 .vscode/
 .idea/
+.cursor/
+.continue/
+.windsurf/
+.opencode/
+.claude/
+AGENTS.md
 node_modules/
 dist/
 build/
