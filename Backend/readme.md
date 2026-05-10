@@ -1,13 +1,10 @@
 # Backend
 
-Contains the server-side code and Odoo integration modules.
-
-Quick start:
-- Install dependencies
-- Configure connection to the Odoo instance
-- Run the server from the `Backend` folder
+Contains the server-side code for Traveloop API.
 
 ## Local dev
+
+> Note: This assumes backend scaffold exists (docker-compose, alembic, app files added in upcoming tasks).
 
 1. `cp .env.example .env` (fill values)
 2. `docker-compose up -d db redis`
