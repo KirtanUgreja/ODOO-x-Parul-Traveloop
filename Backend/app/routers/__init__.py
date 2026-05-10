@@ -10,6 +10,7 @@ from app.routers.notes import router as notes_router
 from app.routers.community import router as community_router
 from app.routers.users import router as users_router
 from app.routers.share import router as share_router
+from app.routers.admin import router as admin_router
 
 
 api_router = APIRouter()
@@ -24,3 +25,4 @@ api_router.include_router(notes_router, prefix="/trips", tags=["notes"])
 api_router.include_router(share_router, prefix="/trips", tags=["share"])
 api_router.include_router(community_router, prefix="/community", tags=["community"])
 api_router.include_router(users_router, prefix="/users", tags=["users"])
+api_router.include_router(admin_router, prefix="/admin", tags=["admin"])
