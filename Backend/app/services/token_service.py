@@ -1,7 +1,6 @@
 """Token service for opaque refresh tokens stored in Redis."""
 
 import uuid
-from typing import Literal
 
 from app.config import settings
 from app.redis_client import get_redis

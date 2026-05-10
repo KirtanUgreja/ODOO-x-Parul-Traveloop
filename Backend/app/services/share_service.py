@@ -4,7 +4,7 @@ import secrets
 from datetime import datetime, timedelta
 from uuid import UUID
 
-from fastapi import HTTPException, status
+from fastapi import HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 

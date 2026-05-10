@@ -3,18 +3,13 @@
 import datetime as dt
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List
 
 from app.dependencies import get_db, require_admin
 from app.models.user import User
 from app.schemas.admin import (
-    AdminStatsResponse,
-    AdminAnalyticsResponse,
     UserAdminResponse,
-    UserAdminListResponse,
     UserAdminUpdate,
     TripAdminResponse,
-    TripAdminListResponse,
 )
 from app.services import admin_service
 

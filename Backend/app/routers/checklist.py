@@ -1,13 +1,11 @@
 """Checklist router for managing checklist items."""
 
-import datetime as dt
 from fastapi import APIRouter, Depends, Request, status
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List
 
 from app.dependencies import get_db, get_current_user
 from app.models.user import User
-from app.schemas.checklist import ChecklistItemCreate, ChecklistItemResponse, ChecklistItemUpdate, ChecklistShareResponse
+from app.schemas.checklist import ChecklistItemCreate, ChecklistItemResponse, ChecklistItemUpdate
 from app.services import checklist_service
 
 router = APIRouter()

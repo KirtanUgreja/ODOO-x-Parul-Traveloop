@@ -3,12 +3,11 @@
 from typing import List
 from uuid import UUID
 
-from fastapi import HTTPException, status
+from fastapi import HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.section import Section
-from app.models.trip import Trip
 from app.services.trip_service import verify_trip_owner
 
 

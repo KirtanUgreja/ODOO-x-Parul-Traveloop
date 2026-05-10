@@ -1,9 +1,7 @@
 """Notes router for managing trip notes."""
 
-import datetime as dt
 from fastapi import APIRouter, Depends, Request, status
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List
 
 from app.dependencies import get_db, get_current_user
 from app.models.user import User

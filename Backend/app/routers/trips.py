@@ -1,13 +1,12 @@
 """Trips router for managing trips."""
 
 import datetime as dt
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, Depends, Request, status
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List
 
 from app.dependencies import get_db, get_current_user
 from app.models.user import User
-from app.schemas.trip import TripCreate, TripResponse, TripUpdate, TripListResponse
+from app.schemas.trip import TripCreate, TripResponse, TripUpdate
 from app.services import trip_service, share_service
 
 router = APIRouter()

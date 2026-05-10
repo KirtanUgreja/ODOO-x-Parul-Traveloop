@@ -1,7 +1,7 @@
 """Admin schemas for analytics and user management."""
 
-from datetime import date, datetime
-from pydantic import BaseModel, Field
+from datetime import date
+from pydantic import BaseModel
 from typing import List, Optional
 
 

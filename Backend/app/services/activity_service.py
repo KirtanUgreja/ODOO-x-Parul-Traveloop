@@ -3,12 +3,11 @@
 from typing import List
 from uuid import UUID
 
-from fastapi import HTTPException, status
+from fastapi import HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.section_activity import SectionActivity
-from app.services.section_service import SectionNotFound
 
 
 class ActivityNotFound(HTTPException):

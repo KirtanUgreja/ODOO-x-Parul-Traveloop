@@ -11,7 +11,6 @@ from app.models.user import User
 from app.models.trip import Trip
 from app.models.city import City
 from app.models.section_activity import SectionActivity
-from app.models.section import Section
 
 
 async def get_stats(db: AsyncSession) -> dict:
@@ -155,7 +154,6 @@ async def get_analytics(db: AsyncSession) -> dict:
     ]
 
     # User trends for last 30 days
-    thirty_days_ago = dt.datetime.utcnow() - dt.timedelta(days=30)
     # Since User may not have created_at, we'll use a placeholder
     # In production, you'd want to add created_at to the User model
     user_trends = []

@@ -1,12 +1,11 @@
 """Community router for public trip sharing and community features."""
 
-import datetime as dt
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, Depends, Request, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.dependencies import get_db, get_current_user
 from app.models.user import User
-from app.schemas.community import CommunityTripListResponse, CommunityTripResponse, CopyTripResponse
+from app.schemas.community import CommunityTripResponse
 from app.services import community_service
 
 router = APIRouter()

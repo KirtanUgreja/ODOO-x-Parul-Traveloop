@@ -2,7 +2,7 @@ import os
 import pytest
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 
 @pytest.fixture(scope="session")

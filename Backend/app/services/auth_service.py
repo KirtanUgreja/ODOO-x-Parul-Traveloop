@@ -1,12 +1,10 @@
 """Auth service for registration, login, logout, and password reset."""
 
-from typing import Literal
 
 from fastapi import HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.config import settings
 from app.models.user import User
 from app.schemas.auth import RegisterRequest
 from app.services import otp_service, token_service

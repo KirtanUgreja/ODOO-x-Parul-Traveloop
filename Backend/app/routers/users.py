@@ -1,12 +1,10 @@
 """Users router for user-related endpoints like saved cities."""
 
-import datetime as dt
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.dependencies import get_db, get_current_user
 from app.models.user import User
-from app.schemas.user import SavedCityListResponse, SavedCityResponse
 from app.services import saved_service
 
 router = APIRouter()
@@ -41,14 +39,13 @@ async def list_saved_cities(
     # Build response with city details
     result = []
     for sc in saved_cities:
-        city_data = {
+        result.append({
             "id": str(sc.id),
             "user_id": str(sc.user_id),
             "city_id": str(sc.city_id),
             "city_name": sc.city.name if sc.city else None,
             "city_country": sc.city.country if sc.city else None,
-        }
-        result.append(result)
+        })
 
     return _make_success_response(result, request)
 

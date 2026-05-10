@@ -4,12 +4,11 @@ from datetime import date
 from typing import List
 from uuid import UUID
 
-from fastapi import HTTPException, status
+from fastapi import HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.trip import Trip
-from app.models.user import User
 
 
 class TripNotFound(HTTPException):

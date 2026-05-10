@@ -1,9 +1,8 @@
 """Community service for listing and copying community trips."""
 
-from datetime import datetime
 from uuid import UUID
 
-from fastapi import HTTPException, status
+from fastapi import HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -11,7 +10,6 @@ from app.models.community_trip import CommunityTrip
 from app.models.trip import Trip
 from app.models.section import Section
 from app.models.section_activity import SectionActivity
-from app.schemas.trip import TripResponse
 
 
 class CommunityTripNotFound(HTTPException):
@@ -22,7 +20,6 @@ class CommunityTripNotFound(HTTPException):
 async def list_community_trips(db: AsyncSession, page: int = 1, limit: int = 20) -> tuple[list[CommunityTrip], int]:
     """List published community trips."""
     # Get total count
-    count_stmt = select(CommunityTrip).where(CommunityTrip.moderation_status == "approved")
     total_result = await db.execute(select(CommunityTrip).where(CommunityTrip.moderation_status == "approved"))
     all_items = total_result.scalars().all()
     total = len(all_items)

@@ -1,11 +1,9 @@
 """Share router for public access to shared trips."""
 
-import datetime as dt
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, Depends, Request, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.dependencies import get_db
-from app.schemas.community import SharedTripPublicResponse
 from app.services import share_service
 
 router = APIRouter()
