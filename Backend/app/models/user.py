@@ -1,6 +1,7 @@
 import uuid
 from sqlalchemy import Boolean, Column, String
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship
 from app.models.base import Base
 
 
@@ -20,3 +21,5 @@ class User(Base):
     country = Column(String, nullable=True)
     bio = Column(String, nullable=True)
     avatar_url = Column(String, nullable=True)
+
+    trips = relationship("Trip", back_populates="user", cascade="all, delete-orphan")
