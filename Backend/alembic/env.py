@@ -17,6 +17,11 @@ from app.models.section_activity import SectionActivity
 from app.models.activity_catalog import ActivityCatalog
 from app.models.budget_item import BudgetItem
 from app.models.invoice import Invoice
+from app.models.checklist_item import ChecklistItem
+from app.models.note import Note
+from app.models.shared_trip import SharedTrip
+from app.models.saved_city import SavedCity
+from app.models.community_trip import CommunityTrip
 
 
 config = context.config

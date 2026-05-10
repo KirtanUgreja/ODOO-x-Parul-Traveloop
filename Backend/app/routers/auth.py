@@ -1,10 +1,8 @@
 """Auth router with OTP-based registration and refresh token cookies."""
 
 import datetime as dt
-import uuid
-from typing import Literal
 
-from fastapi import APIRouter, Cookie, Depends, Header, HTTPException, Request, Response, UploadFile, File, status
+from fastapi import APIRouter, Cookie, Depends, HTTPException, Request, Response, UploadFile, File, status
 from pydantic import EmailStr
 from slowapi import Limiter
 from slowapi.util import get_remote_address
@@ -14,24 +12,17 @@ from app.config import settings
 from app.dependencies import get_db, get_current_user
 from app.models.user import User
 from app.schemas.auth import (
-    AuthResponse,
     LoginRequest,
-    LogoutResponse,
     MeUpdateRequest,
-    RefreshResponse,
     RegisterRequest,
     ResetPasswordRequest,
-    ResetPasswordResponse,
     SendOtpRequest,
-    SendOtpResponse,
     UserResponse,
     VerifyOtpRequest,
-    VerifyOtpResponse,
 )
 from app.services import otp_service, token_service
 from app.services.auth_service import (
     delete_user,
-    get_user_by_id,
     login_user,
     logout_user,
     refresh_access_token,
@@ -160,7 +151,6 @@ async def verify_otp(
     # For reset, create reset token
     elif body.purpose == "reset":
         # Get user ID
-        from app.redis_client import get_redis
         # We need to look up the user, but we don't have DB here
         # So we store the email in a temporary token
         reset_token = token_service.create_reset_token(body.email)

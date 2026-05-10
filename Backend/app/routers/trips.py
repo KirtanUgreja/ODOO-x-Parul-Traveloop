@@ -1,14 +1,13 @@
 """Trips router for managing trips."""
 
 import datetime as dt
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, Depends, Request, status
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List
 
 from app.dependencies import get_db, get_current_user
 from app.models.user import User
-from app.schemas.trip import TripCreate, TripResponse, TripUpdate, TripListResponse
-from app.services import trip_service
+from app.schemas.trip import TripCreate, TripResponse, TripUpdate
+from app.services import trip_service, share_service
 
 router = APIRouter()
 
@@ -123,3 +122,26 @@ async def delete_trip(
         {"message": "Trip deleted successfully"},
         request,
     )
+
+
+@router.post("/{trip_id}/share", response_model=None, status_code=status.HTTP_201_CREATED)
+async def create_share(
+    request: Request,
+    trip_id: str,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+    expires_in_days: int = 7,
+):
+    """Create a share token for a trip."""
+    shared_trip = await share_service.create_share_token(
+        db,
+        trip_id=trip_id,
+        user_id=current_user.id,
+        expires_in_days=expires_in_days,
+    )
+    return _make_success_response({
+        "id": str(shared_trip.id),
+        "trip_id": str(shared_trip.trip_id),
+        "token": shared_trip.token,
+        "expires_at": shared_trip.expires_at.isoformat() if shared_trip.expires_at else None,
+    }, request)

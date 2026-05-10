@@ -25,6 +25,8 @@ class Settings(BaseSettings):
     @classmethod
     def split_origins(cls, v):
         if isinstance(v, str):
+            if not v.strip():
+                return ["http://localhost:3000"]
             return [s.strip() for s in v.split(",") if s.strip()]
         return v
 
